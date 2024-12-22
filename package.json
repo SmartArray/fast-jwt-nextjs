@@ -1,6 +1,6 @@
 {
   "name": "fast-jwt-nextjs",
-  "version": "5.0.2-rc1",
+  "version": "5.0.2-rc2",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "MIT",
