@@ -1,0 +1,27 @@
+{
+  "name": "fast-jwt-nextjs",
+  "version": "5.0.2",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    "import": "./dist/index.js",
+    "require": "./dist/index.js"
+  },  
+  "dependencies": {
+    "crypto-browserify": "^3.12.1",
+    "fast-jwt": "^5.0.2",
+    "stream-browserify": "^3.0.0"
+  },
+  "devDependencies": {
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.7.2",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.0"
+  },
+  "scripts": {
+    "build": "webpack"
+  }
+}
