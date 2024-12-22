@@ -42,5 +42,8 @@ No additional configuration is required. The package is ready to use out of the 
 ## Contributing
 Contributions to improve the compatibility or extend the functionality of this module are welcome. Please feel free to fork the repository, make changes, and submit a pull request.
 
+## Version Semantics
+This package version follows the version semantics of the parent package `fast-jwt`
+
 ## License
 This project is licensed under the MIT License - see the LICENSE.md file for details.

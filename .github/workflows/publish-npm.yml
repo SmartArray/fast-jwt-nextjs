@@ -1,0 +1,46 @@
+name: Publish to NPM
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'package.json'
+
+jobs:
+  publish:
+    if: github.event_name == 'push' && contains(github.event.commits[*].modified, 'package.json')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          registry-url: 'https://registry.npmjs.org/'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Check for version change
+        id: version-check
+        run: |
+          version_changed=$(git diff HEAD^ HEAD -- package.json | grep '"version":')
+          if [[ "$version_changed" != "" ]]; then
+            echo "Version change detected"
+            echo "VERSION_CHANGED=true" >> $GITHUB_ENV
+          fi
+
+      - name: Publish to npm
+        if: env.VERSION_CHANGED == 'true'
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Notify Success
+        if: env.VERSION_CHANGED == 'true'
+        run: echo "Package published successfully"
+
